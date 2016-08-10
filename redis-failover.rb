@@ -6,13 +6,13 @@ require 'logger'
 class TestClient
   def initialize
     @sentinels = [
-      { host: 'sentinel01.example.com', port: 26379 },
-      { host: 'sentinel02.example.com', port: 26379 },
-      { host: 'sentinel03.example.com', port: 26379 },
+      { host: '172.30.233.208', port: 26379 }
+#      { host: 'sentinel02.example.com', port: 26379 },
+#      { host: 'sentinel03.example.com', port: 26379 },
     ]
 
     @redis = Redis.new(
-      master_name: 'your-master-name',
+      master_name: 'mymaster',
       sentinels: @sentinels,
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
