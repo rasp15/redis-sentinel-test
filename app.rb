@@ -7,8 +7,8 @@ require 'sinatra'
 class TestClient
   def initialize
     @sentinels = [
-      { host: '172.30.233.208', port: 26379 },
-      { host: '10.1.4.111', port: 26379 }
+      { host: 'redis-sentinel', port: 26379 }
+      #{ host: '10.1.4.111', port: 26379 }
 #      { host: 'sentinel03.example.com', port: 26379 },
     ]
 
