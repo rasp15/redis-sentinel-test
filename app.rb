@@ -1,5 +1,5 @@
 require 'redis'
-require 'redis-sentinel'
+#require 'redis-sentinel'
 require 'timeout'
 require 'logger'
 require 'sinatra'
