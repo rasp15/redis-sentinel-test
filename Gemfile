@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
-gem 'rack-cache'
-gem 'rack-bug'
-gem 'puma'
+gem 'sinatra-activerecord'
+gem 'rake'
+#gem 'puma'
 gem 'redis'
 gem 'redis-sentinel'
 gem 'timeout'
