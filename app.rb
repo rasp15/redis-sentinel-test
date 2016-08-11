@@ -39,8 +39,10 @@ class TestClient
   end
 end
 
-test = TestClient.new
+
 
 while true
+test = TestClient.new
   puts test.test_connection
+  Timeout.timeout(10)
 end
