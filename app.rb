@@ -43,5 +43,6 @@ end
 
 while true
 test = TestClient.new
-  Timeout.timeout(10) puts test.test_connection
+puts test.test_connection
+sleep(10)
  end
