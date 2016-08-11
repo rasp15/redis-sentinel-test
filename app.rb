@@ -13,7 +13,9 @@ class TestClient
     ]
 
     @redis = Redis.new(
-      master_name: 'mymaster',
+#      master_name: 'mymaster',
+#      sentinels: @sentinels,
+      url: 'redis://mymaster',
       sentinels: @sentinels,
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
