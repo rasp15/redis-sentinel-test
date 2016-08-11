@@ -25,7 +25,7 @@ class TestClient
   def test_connection
     input = Random.rand(10_000_000)
     output = nil
-
+    sleep(10)
     @redis.set('foo', input)
 
     Timeout.timeout(0.1) do
@@ -43,5 +43,4 @@ test = TestClient.new
 
 while true
 puts test.test_connection
-sleep(10)
 end
