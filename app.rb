@@ -19,8 +19,6 @@ class TestClient
       logger: Logger.new(STDOUT)
     )
     @redis_slave = Redis.new(
-#      master_name: 'mymaster',
-
       url: 'redis://mymaster',
       sentinels: @sentinels,
       role: 'slave',
@@ -33,13 +31,13 @@ class TestClient
   def test_connection
     input = Random.rand(10_000_000)
     output = nil
-    
+    puts"Writing value #{input} to master and reading from random slave."    
     @redis.set('foo', input)
 
  #   Timeout.timeout(2) do
       output = @redis_slave.get('foo').to_i
     end
-  puts 
+
     return "ERROR: Incorrect response #{input} != #{output}" unless input == output
     return "Success (#{input} == #{output}) from random slave #{@redis_slave.id}"
 #  rescue Timeout::Error
