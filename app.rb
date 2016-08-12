@@ -39,9 +39,9 @@ class TestClient
  #   Timeout.timeout(2) do
       output = @redis_slave.get('foo').to_i
     end
-
+  puts 
     return "ERROR: Incorrect response #{input} != #{output}" unless input == output
-    return "Success (#{input} == #{output}) from #{@redis.id}"
+    return "Success (#{input} == #{output}) from random slave #{@redis_slave.id}"
 #  rescue Timeout::Error
 #    return 'ERROR: Timeout exceeded'
 #end
