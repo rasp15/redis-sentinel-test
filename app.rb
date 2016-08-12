@@ -35,14 +35,14 @@ class TestClient
     puts"Writing value #{input} to master and reading from random slave."    
     @redis.set('foo', input)
 
-    Timeout.timeout(3) do
+    #Timeout.timeout(3) do
       output = @redis_slave.get('foo').to_i
-    end
+    #end
 
     return "ERROR: Incorrect response #{input} != #{output}" unless input == output
     return "Success (#{input} == #{output}) from random slave #{@redis_slave.id}"
-  rescue Timeout::Error
-    return 'ERROR: Timeout exceeded. Read took longer than 3s'
+  #rescue Timeout::Error
+  #  return 'ERROR: Timeout exceeded. Read took longer than 3s'
 end
 end
 
