@@ -18,6 +18,11 @@ class TestClient
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
     )
+    
+
+  end
+
+  def test_connection
     @redis_slave = Redis.new(
       url: 'redis://mymaster',
       sentinels: @sentinels,
@@ -25,10 +30,6 @@ class TestClient
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
     )
-
-  end
-
-  def test_connection
     input = Random.rand(10_000_000)
     output = nil
     puts"Writing value #{input} to master and reading from random slave."    
