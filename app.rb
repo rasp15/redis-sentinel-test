@@ -36,15 +36,15 @@ class TestClient
     
     @redis.set('foo', input)
 
-    Timeout.timeout(2) do
+ #   Timeout.timeout(2) do
       output = @redis_slave.get('foo').to_i
     end
 
     return "ERROR: Incorrect response #{input} != #{output}" unless input == output
     return "Success (#{input} == #{output}) from #{@redis.id}"
-  rescue Timeout::Error
-    return 'ERROR: Timeout exceeded'
-  end
+#  rescue Timeout::Error
+#    return 'ERROR: Timeout exceeded'
+#end
 end
 
 test = TestClient.new
