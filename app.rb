@@ -13,23 +13,31 @@ class TestClient
     ]
 
     @redis = Redis.new(
-#      master_name: 'mymaster',
-#      sentinels: @sentinels,
       url: 'redis://mymaster',
       sentinels: @sentinels,
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
     )
+    @redis_slave = Redis.new(
+#      master_name: 'mymaster',
+
+      url: 'redis://mymaster',
+      sentinels: @sentinels,
+      role: slave,
+      failover_reconnect_timeout: 60,
+      logger: Logger.new(STDOUT)
+    )
+
   end
 
   def test_connection
     input = Random.rand(10_000_000)
     output = nil
-    sleep(10)
+    
     @redis.set('foo', input)
 
-    Timeout.timeout(0.1) do
-      output = @redis.get('foo').to_i
+    Timeout.timeout(2) do
+      output = @redis_slave.get('foo').to_i
     end
 
     return "ERROR: Incorrect response #{input} != #{output}" unless input == output
@@ -40,7 +48,8 @@ class TestClient
 end
 
 test = TestClient.new
-
+STDOUT.sync = true
 while true
 puts test.test_connection
+sleep(10)
 end
