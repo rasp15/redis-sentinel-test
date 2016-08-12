@@ -23,7 +23,7 @@ class TestClient
 
       url: 'redis://mymaster',
       sentinels: @sentinels,
-      role: slave,
+      role: 'slave',
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
     )
