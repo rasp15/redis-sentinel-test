@@ -19,6 +19,12 @@ class TestClient
       logger: Logger.new(STDOUT)
     )
     
+    @redis.subscribe("one", "two") do |on|
+      
+      on.message do |channel, message|
+      puts "pub/sub test received: ##{channel}: #{message}"
+      @redis.unsubscribe if message == "exit"
+    end
 
   end
 
