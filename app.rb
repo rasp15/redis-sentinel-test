@@ -33,28 +33,20 @@ class TestClient
     puts"Writing value #{input} to master and reading from random slave."    
     @redis.set('foo', input)
 
+    # publish message. This will be received by subscribers.
+    @redis.publish("one", input)
+    
     #Timeout.timeout(3) do
       output = @redis_slave.get('foo').to_i
     #end
-
+ 
     return "ERROR: Incorrect response #{input} != #{output}" unless input == output
     return "Success (#{input} == #{output}) from random slave #{@redis_slave.id}"
   #rescue Timeout::Error
   #  return 'ERROR: Timeout exceeded. Read took longer than 3s'
-end
+ end
   
-  def subscribe
-    @redis.subscribe("one", "two") do |on|
-      on.message do |channel, message|
-       puts "pub/sub test received: ##{channel}: #{message}"
-       @redis.unsubscribe if message == "exit"
-      end
-    end
-    
-    return "subscribed"
-  end
-  
-  
+ 
 end
 
 test = TestClient.new
