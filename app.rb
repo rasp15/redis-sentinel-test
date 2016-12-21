@@ -18,15 +18,6 @@ class TestClient
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
     )
-    
-    @redis.subscribe("one", "two") do |on|
-      
-      on.message do |channel, message|
-       puts "pub/sub test received: ##{channel}: #{message}"
-       @redis.unsubscribe if message == "exit"
-      end
-    end
-
   end
 
   def test_connection
@@ -51,10 +42,22 @@ class TestClient
   #rescue Timeout::Error
   #  return 'ERROR: Timeout exceeded. Read took longer than 3s'
 end
+  
+  def subscribe
+    @redis.subscribe("one", "two") do |on|
+      on.message do |channel, message|
+       puts "pub/sub test received: ##{channel}: #{message}"
+       @redis.unsubscribe if message == "exit"
+      end
+    end
+  end
+  
+  
 end
 
 test = TestClient.new
 STDOUT.sync = true
+test.subscribe
 while true
 puts test.test_connection
 sleep(10)
