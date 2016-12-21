@@ -50,6 +50,8 @@ end
        @redis.unsubscribe if message == "exit"
       end
     end
+    
+    return "subscribed"
   end
   
   
