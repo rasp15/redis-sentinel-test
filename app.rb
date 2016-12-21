@@ -59,10 +59,6 @@ end
 
 test = TestClient.new
 STDOUT.sync = true
-# Test connection before subscribing.
-puts test.test_connection
-sleep(10)
-puts test.subscribe
 while true
 puts test.test_connection
 sleep(10)
