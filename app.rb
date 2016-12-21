@@ -22,8 +22,9 @@ class TestClient
     @redis.subscribe("one", "two") do |on|
       
       on.message do |channel, message|
-      puts "pub/sub test received: ##{channel}: #{message}"
-      @redis.unsubscribe if message == "exit"
+       puts "pub/sub test received: ##{channel}: #{message}"
+       @redis.unsubscribe if message == "exit"
+      end
     end
 
   end
