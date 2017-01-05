@@ -5,13 +5,14 @@ require 'logger'
 require 'sinatra'
 
 class TestClient
-  def initialize
+  def initialize 
     @sentinels = [
       #{ host: 'redis-sentinel', port: 26379 }
-      #{ host: '10.1.4.111', port: 26379 }
+      { host: '172.30.68.134', port: 26379 }
       #{ host: 'sentinel03.example.com', port: 26379 },
       #{ host: 'http://redis-sentinel-samuel-redis-test-two.appad3.tsi-af.de', port: 26379 }
-      { host: '46.29.98.213', port: 26379 }
+      #{ host: '46.29.98.213', port: 26379 } #ip address of the route url above
+      
     ]
 
     @redis = Redis.new(
