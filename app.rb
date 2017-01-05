@@ -10,7 +10,7 @@ class TestClient
       #{ host: 'redis-sentinel', port: 26379 }
       #{ host: '10.1.4.111', port: 26379 }
 #      { host: 'sentinel03.example.com', port: 26379 },
-      { host: 'redis-sentinel-samuel-redis-test-two.appad3.tsi-af.de', port: 26379 }
+      { host: 'http://redis-sentinel-samuel-redis-test-two.appad3.tsi-af.de', port: 26379 }
     ]
 
     @redis = Redis.new(
