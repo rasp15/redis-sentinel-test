@@ -8,7 +8,7 @@ class TestClient
   def initialize 
     @sentinels = [
       #{ host: 'redis-sentinel', port: 26379 }
-      { host: '47.29.98.213', port: 30490 }
+      { host: '46.29.98.213', port: 30490 }
       #{ host: 'sentinel03.example.com', port: 26379 },
       #{ host: 'http://redis-sentinel-samuel-redis-test-two.appad3.tsi-af.de', port: 26379 }
       #{ host: '46.29.98.213', port: 26379 } #ip address of the route url above
