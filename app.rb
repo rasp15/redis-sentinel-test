@@ -16,7 +16,7 @@ class TestClient
     ]
 
     @redis = Redis.new(
-      url: 'redis://mymaster',
+      url: 'redis://redis-cluster',
       sentinels: @sentinels,
       failover_reconnect_timeout: 60,
       logger: Logger.new(STDOUT)
@@ -25,7 +25,7 @@ class TestClient
 
   def test_connection
     @redis_slave = Redis.new(
-      url: 'redis://mymaster',
+      url: 'redis://redis-cluster',
       sentinels: @sentinels,
       role: 'slave',
       failover_reconnect_timeout: 60,
